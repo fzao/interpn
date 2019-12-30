@@ -53,6 +53,6 @@ libInterpn.so: $(OBJ)
 	$(LD) $(OBJ) -shared -o libInterpn.so $(LDFLAGS)
 libInterpn.dll: $(OBJ) 
 	$(LD) $(OBJ) -shared -o libInterpn.dll $(LDFLAGS)
-libWrapperModeleHydro.dylib: $(OBJ)
+libInterpn.dylib: $(OBJ)
 	$(LD) $(OBJ) -dynamiclib -o libInterpn.so $(LDFLAGS)
 

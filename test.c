@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include<malloc.h>
 #include<math.h>
 
 extern void nlinear_interp(double ** , double *, int *, int ,

@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include<malloc.h>
 #include<math.h>
 
 extern void nlinear_interp(double ** , double *, int *, int ,
@@ -15,7 +14,7 @@ void interpn(double *x, double *val, int *dim, int *n, int *nn, double *xp,
    int *ad, *k, *dim_s;
    int n_s, np_s, nn_s, outmode_s;
    unsigned int i, j, nval;
-   
+
    n_s = *n;  // number of dimensions
    nn_s = *nn;  // number of points for each dimension
    np_s = *np;  // number of points to interpolate
@@ -42,4 +41,3 @@ void interpn(double *x, double *val, int *dim, int *n, int *nn, double *xp,
 
    return;
 }
-
