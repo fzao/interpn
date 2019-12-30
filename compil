@@ -1,4 +1,0 @@
-#!/bin/zsh
-
-gcc test.c libInterpn.so -o go -lm
-

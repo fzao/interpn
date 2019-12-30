@@ -2,4 +2,9 @@
 *.so
 .Rhistory
 .DS_Store
+interpn.Rproj
+.Rproj.user
+old
+.RData
+.Rbuildignore
 
