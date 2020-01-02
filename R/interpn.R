@@ -45,11 +45,14 @@ interpn <- function(outmode, v, ...) {
       dimx <- c(dimx, length(grids[[i]]))
     }
   }
-  if(outmode == 1) out_mode <- 7
-  else if(outmode == 2) out_mode <- 9
-  else if(outmode == 3) out_mode <- 8
-  else if(outmode == 4) out_mode <- 3
-  else out_mode <- 1
+  if(outmode == 1) out_mode <- as.integer(7)
+  else if(outmode == 2) out_mode <- as.integer(10)
+  else if(outmode == 3) out_mode <- as.integer(8)
+  else if(outmode == 4) out_mode <- as.integer(3)
+  else out_mode <- as.integer(1)
+  x <- as.double(x)
+  v <- as.double(v)
+  xq <- as.double(xq)
 
   Adress <- getNativeSymbolInfo("interpn")$address
   Interpolation <- .C(Adress, as.vector(x), as.vector(v), n, dimx, as.vector(xq), yq, nq, out_mode)
