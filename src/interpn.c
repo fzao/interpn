@@ -1,43 +1,53 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include<math.h>
 
 extern void nlinear_interp(double ** , double *, int *, int ,
                     double **, double *, int , int ,
                     double *, double *, int *, int *);
 
-void interpn(double *x, double *val, int *dim, int *n, int *nn, double *xp,
-                 double *yp, int *np, int *outmode)
+void interpn(double *x, double *y, int *n, int *dimx,
+             double *xq, double *yq, int *nq, int *outmode)
 {
-   double **x_s, **xp_s, *u, *v;
-   int *ad, *k, *dim_s;
-   int n_s, np_s, nn_s, outmode_s;
-   unsigned int i, j, nval;
+   double **x_s, **xq_s, *u, *v;
+   int *ad, *k;
+   unsigned int i, kx, kxq, nwork;
 
-   n_s = *n;  // number of dimensions
-   nn_s = *nn;  // number of points for each dimension
-   np_s = *np;  // number of points to interpolate
-   nval = (int) pow(nn_s,  n_s);
-   outmode_s = *outmode;  // extrapolation method
-   // passage aux pointeurs double
-   x_s = (double **) malloc(sizeof(double *) * n_s);
-   xp_s = (double **) malloc(sizeof(double *) * n_s);
-   j = 0;
-   for(i = 0; i < n_s; i++){
-     x_s[i] = (double *) malloc(sizeof(double) * nn_s);
-     memcpy(x_s[i], x+j*nn_s, sizeof(double) * nn_s);
-     xp_s[i] = (double *) malloc(sizeof(double) * np_s);
-     memcpy(xp_s[i], xp+j*np_s, sizeof(double) * np_s);
-     j++;
+   // pointer to pointer
+   x_s = (double **) malloc(sizeof(double *) * *n);
+   xq_s = (double **) malloc(sizeof(double *) * *n);
+   kx = 0;
+   kxq = 0;
+   for(i = 0; i < *n; i++){
+     x_s[i] = (double *) malloc(sizeof(double) * dimx[i]);
+     memcpy(x_s[i], x+kx, sizeof(double) * dimx[i]);
+     kx += dimx[i];
+     xq_s[i] = (double *) malloc(sizeof(double) * *nq);
+     memcpy(xq_s[i], xq+kxq, sizeof(double) * *nq);
+     kxq += *nq;
    }
-   // tableaux de travail
-   u = (double *) malloc(sizeof(double) * nval);
-   v = (double *) malloc(sizeof(double) * nval);
-   ad = (int *) malloc(sizeof(int) * nval);
-   k = (int *) malloc(sizeof(int) * nval);
-   // appel a l'interpolation
-   nlinear_interp(x_s, val, dim, n_s, xp_s, yp, np_s, outmode_s, u, v, ad, k);
+
+   // work arrays
+   nwork = kx + kxq;
+   u = (double *) malloc(sizeof(double) * nwork);
+   v = (double *) malloc(sizeof(double) * nwork);
+   ad = (int *) malloc(sizeof(int) * nwork);
+   k = (int *) malloc(sizeof(int) * nwork);
+
+   // call interpolation function of Scilab
+   nlinear_interp(x_s, y, dimx, *n, xq_s, yq, *nq, *outmode, u, v, ad, k);
+
+   // free memory
+   for(i = 0; i < *n; i++){
+     free(x_s[i]);
+     free(xq_s[i]);
+   }
+   free(x_s);
+   free(xq_s);
+   free(u);
+   free(v);
+   free(ad);
+   free(k);
 
    return;
 }

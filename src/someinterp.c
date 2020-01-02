@@ -135,12 +135,12 @@ void nlinear_interp(double **x , double val[], int dim[], int n,
      *     u, v, ad, k : work arrays
      */
 
-    int i, j, l, p, temp, b,/* toto,*/ two_p_n;
+    int i, j, l, p, temp, b, two_p_n;
     double xx;
 
     /*
      *   calcul des decalages d'indices pour retrouver les valeurs
-     *   de l'hypercube encadrant le point à interpoler
+     *   de l'hypercube encadrant le point a interpoler
      */
     ad[0] = 0;
     ad[1] = 1;
@@ -155,7 +155,7 @@ void nlinear_interp(double **x , double val[], int dim[], int n,
             ad[p + i] = ad[i] + temp;
         }
     };
-    
+
     /* a ce niveau on a  p = 2^(n-1)  */
     two_p_n = 2 * p;
 

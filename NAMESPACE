@@ -1,4 +1,4 @@
-# export("calnat")
+export("interpn")
 
 # Load shared objects
 useDynLib(libInterpn)
