@@ -16,7 +16,6 @@ else
 	else
 # Mac OSX
 		INTERPN = libInterpn.dylib
-		LD = gfortran
 	endif
 endif
 
