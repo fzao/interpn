@@ -28,9 +28,9 @@ x2 <- as.double(seq(, n2))
 v <- double(nv)
 # function values
 k <- 1
-for(i in 1:n1){
-   for(j in 1:n2){
-      v[k] <- x1[i] * x2[j]
+for(i in 1:n2){
+   for(j in 1:n1){
+      v[k] <- x1[j] * x2[i]
       k <- k + 1
    }
 }
