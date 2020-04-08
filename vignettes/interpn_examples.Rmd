@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **interpn** is a N-dimensional linear interpolant based on the original Scilab function [linear_interpln](https://help.scilab.org/docs/6.0.2/en_US/linear_interpn.html)
 
-Download the package from CRAN or [GitHub](https://github.com/fzao/interpln) and then install and load it.
+Download the package from [GitHub](https://github.com/fzao/interpln) and then install and load it.
 
 ```{r inter}
 library(interpn)
