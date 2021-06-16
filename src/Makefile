@@ -5,18 +5,14 @@ DBG=-g
 CFLAGS = $(OPT) $(DBG)
 LDFLAGS = $(OPT) $(DBG)
 
-ifdef SYSTEMROOT
-# Windows OS
-	INTERPN = libInterpn.dll
-else
-	ifeq ($(shell uname),Linux)
+ifeq ($(shell uname),Linux)
 # GNU/Linux OS
-		INTERPN = libInterpn.so
-		CFLAGS = $(OPT) $(DBG) -fPIC
-	else
+	INTERPN = libInterpn.so
+	CFLAGS = $(OPT) $(DBG) -fPIC
+else
 # Mac OSX
-		INTERPN = libInterpn.dylib
-	endif
+	INTERPN = libInterpn.dylib
+	LD = gfortran
 endif
 
 .DEFAULT:
@@ -34,10 +30,6 @@ SRC = ./returnanan.c ./someinterp.c ./isanan.c ./interpn.c machine.h returnanan.
 OBJ = returnanan.o someinterp.o isanan.o interpn.o
 clean: neat
 	-rm -f .cppdefs $(OBJ)
-	if test -e libInterpn.dll ; \
-	then \
-		(rm -f libInterpn.dll) ; \
-	fi
 	if test -e libInterpn.so ; \
 	then \
 		(rm -f libInterpn.so) ; \
@@ -48,10 +40,7 @@ TAGS: $(SRC)
 	etags $(SRC)
 tags: $(SRC)
 	ctags $(SRC)
-libInterpn.so: $(OBJ) 
+libInterpn.so: $(OBJ)
 	$(LD) $(OBJ) -shared -o libInterpn.so $(LDFLAGS)
-libInterpn.dll: $(OBJ) 
-	$(LD) $(OBJ) -shared -o libInterpn.dll $(LDFLAGS)
 libInterpn.dylib: $(OBJ)
 	$(LD) $(OBJ) -dynamiclib -o libInterpn.so $(LDFLAGS)
-
