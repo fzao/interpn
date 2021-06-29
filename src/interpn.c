@@ -1,7 +1,17 @@
+/*
+ R wrapper to the C Scilab function nlinear_interp()
+ This function is directly used by the R function interpn()
+ 
+ Author: Fabrice Zaoui
+ Copyright (c) EDF 2020
+*/
+
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 
+// Scilab prototype
 extern void nlinear_interp(double ** , double *, int *, int ,
                     double **, double *, int , int ,
                     double *, double *, int *, int *);

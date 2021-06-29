@@ -5,11 +5,12 @@ Title: n dimensional linear interpolation
 Author: Fabrice Zaoui [aut, cre]
 Maintainer: Fabrice Zaoui <fabrice.zaoui@edf.fr>
 Depends: R (>= 2.14.0)
+Suggests: rmarkdown, knitr
 Description: R wrapper to the C Scilab program 'linear_interpn'.
-License: GPL-2
+License: GPL-2 | file LICENSE
 URL: https://github.com/fzao/interpn
 Copyright: 2019, EDF R&D LNHE
 Language: fra
 NeedsCompilation: yes
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1
 VignetteBuilder: knitr
