@@ -5,7 +5,10 @@ Title: n dimensional linear interpolation
 Author: Fabrice Zaoui [aut, cre]
 Maintainer: Fabrice Zaoui <fabrice.zaoui@edf.fr>
 Depends: R (>= 2.14.0)
-Suggests: rmarkdown, knitr
+Suggests: 
+    rmarkdown,
+    knitr,
+    testthat (>= 3.0.0)
 Description: R wrapper to the C Scilab program 'linear_interpn'.
 License: GPL-2 | file LICENSE
 URL: https://github.com/fzao/interpn
@@ -14,3 +17,4 @@ Language: fra
 NeedsCompilation: yes
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
+Config/testthat/edition: 3
